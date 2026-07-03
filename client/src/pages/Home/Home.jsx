@@ -3,7 +3,6 @@ import Navbar from "../../components/Navbar/Navbar";
 function Home() {
   return (
     <>
-      <Navbar />
 
       <div className="text-center mt-20">
         <h1 className="text-5xl font-bold">
