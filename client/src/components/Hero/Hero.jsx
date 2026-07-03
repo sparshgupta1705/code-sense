@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gray-950 text-white">
+    <section className="relative overflow-hidden bg-gray-950 text-white ">
       {/* Background Glow */}
-      <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-600/20 blur-3xl" />
+      <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-600/20 blur-3xl " />
 
       <div className="relative mx-auto flex min-h-[90vh] max-w-7xl items-center px-6">
         <div className="grid w-full gap-16 lg:grid-cols-2">

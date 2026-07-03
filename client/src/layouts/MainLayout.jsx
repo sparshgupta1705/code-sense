@@ -3,17 +3,17 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 
 function MainLayout() {
-    return (
-        <>
-            <Navbar />
+  return (
+    <>
+      <Navbar />
 
-            <main>
-                <Outlet />
-            </main>
+      <main className="pt-20">
+        <Outlet />
+      </main>
 
-            <Footer />
-        </>
-    );
+      <Footer />
+    </>
+  );
 }
 
 export default MainLayout;
