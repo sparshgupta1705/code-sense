@@ -1,11 +1,11 @@
 import Hero from "../../components/Hero/Hero";
-import StatsSection from "../../components/StatsSection/StatsSection";
+import Features from "../../components/Features/Features";
 
 function Home() {
   return (
     <>
       <Hero />
-      <StatsSection />
+      <Features />
     </>
   );
 }
