@@ -1,65 +1,65 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Code2 } from "lucide-react";
 
 function Navbar() {
-  const navLinkClass = ({ isActive }) =>
-    isActive
-      ? "text-blue-400 font-semibold"
-      : "hover:text-blue-300 transition";
+  const linkStyle = ({ isActive }) =>
+    `transition-colors duration-200 ${
+      isActive
+        ? "text-blue-400"
+        : "text-gray-300 hover:text-white"
+    }`;
 
   return (
-    <nav className="bg-gray-900 shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-
+    <header className="sticky top-0 z-50 border-b border-gray-800 bg-gray-950/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold text-blue-400"
-        >
-          CodeSense AI
-        </Link>
+        <NavLink to="/" className="flex items-center gap-2">
+          <div className="rounded-lg bg-blue-600 p-2">
+            <Code2 className="h-5 w-5 text-white" />
+          </div>
 
-        {/* Navigation */}
-        <div className="hidden md:flex items-center gap-8 text-white">
+          <span className="text-xl font-bold text-white">
+            CodeSense AI
+          </span>
+        </NavLink>
 
-          <NavLink to="/" className={navLinkClass}>
-            Home
-          </NavLink>
-
-          <NavLink to="/problems" className={navLinkClass}>
+        {/* Center */}
+        <nav className="hidden md:flex items-center gap-8">
+          <NavLink to="/problems" className={linkStyle}>
             Problems
           </NavLink>
 
-          <NavLink to="/compiler" className={navLinkClass}>
+          <NavLink to="/compiler" className={linkStyle}>
             Compiler
           </NavLink>
 
-          <NavLink to="/dashboard" className={navLinkClass}>
-            Dashboard
+          <NavLink to="/ai-review" className={linkStyle}>
+            AI Review
           </NavLink>
 
-        </div>
+          <NavLink to="/dashboard" className={linkStyle}>
+            Dashboard
+          </NavLink>
+        </nav>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-4">
-
+        {/* Right */}
+        <div className="flex items-center gap-3">
           <NavLink
             to="/login"
-            className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+            className="rounded-lg px-4 py-2 text-gray-300 hover:text-white transition"
           >
             Login
           </NavLink>
 
           <NavLink
             to="/register"
-            className="px-4 py-2 rounded-lg border border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition"
+            className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition"
           >
             Register
           </NavLink>
-
         </div>
-
       </div>
-    </nav>
+    </header>
   );
 }
 
