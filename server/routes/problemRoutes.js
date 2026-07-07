@@ -1,25 +1,17 @@
 import express from "express";
 
+import {
+  createProblem,
+  getProblems,
+  getProblem,
+} from "../controllers/problemController.js";
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("All Problems");
-});
+router.get("/", getProblems);
 
-router.post("/", (req, res) => {
-  res.send("Create Problem");
-});
+router.get("/:id", getProblem);
 
-router.get("/:id", (req, res) => {
-  res.send("Single Problem");
-});
-
-router.put("/:id", (req, res) => {
-  res.send("Update Problem");
-});
-
-router.delete("/:id", (req, res) => {
-  res.send("Delete Problem");
-});
+router.post("/", createProblem);
 
 export default router;
