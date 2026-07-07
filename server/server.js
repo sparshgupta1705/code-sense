@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
 import connectDB from "./config/db.js";
 import problemRoutes from "./routes/problemRoutes.js";
-
+import compilerRoutes from "./routes/compilerRoutes.js";
 dotenv.config();
 
 connectDB();
@@ -18,6 +18,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 app.use("/api/problems", problemRoutes);
+
+app.use("/api/compiler", compilerRoutes);
 
 app.get("/", (req, res) => {
     res.send("CodeSense AI Backend Running");
