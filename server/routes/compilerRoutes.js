@@ -1,8 +1,8 @@
 import express from "express";
-import { runCompiler } from "../controllers/compilerController.js";
+import { runCode } from "../controllers/compilerController.js";
 
 const router = express.Router();
 
-router.post("/run", runCompiler);
+router.post("/run", runCode);
 
 export default router;

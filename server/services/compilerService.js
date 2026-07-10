@@ -17,6 +17,7 @@ export const createSourceFile = (code) => {
   fs.writeFileSync(cppPath, code);
 
   return {
+    id,
     cppPath,
     exePath,
   };

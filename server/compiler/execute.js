@@ -2,10 +2,10 @@ import { execFile } from "child_process";
 
 const executeCode = (exePath, input = "") => {
   return new Promise((resolve, reject) => {
-    const startTime = Date.now();
+    const start = Date.now();
 
     const child = execFile(exePath, (error, stdout, stderr) => {
-      const executionTime = Date.now() - startTime;
+      const executionTime = Date.now() - start;
 
       if (error) {
         return reject({
@@ -20,10 +20,7 @@ const executeCode = (exePath, input = "") => {
       });
     });
 
-    if (input) {
-      child.stdin.write(input);
-    }
-
+    child.stdin.write(input);
     child.stdin.end();
   });
 };

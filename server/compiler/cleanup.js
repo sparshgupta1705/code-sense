@@ -1,11 +1,15 @@
 import fs from "fs";
 
 const cleanup = (...files) => {
-  files.forEach((file) => {
-    if (fs.existsSync(file)) {
-      fs.unlinkSync(file);
+  for (const file of files) {
+    try {
+      if (fs.existsSync(file)) {
+        fs.unlinkSync(file);
+      }
+    } catch (err) {
+      console.log(`Cleanup failed for ${file}`);
     }
-  });
+  }
 };
 
 export default cleanup;

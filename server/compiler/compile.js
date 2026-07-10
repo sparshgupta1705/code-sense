@@ -1,15 +1,15 @@
 import { exec } from "child_process";
 
-const compileCode = (sourceFile, outputFile) => {
+const compileCode = (cppPath, exePath) => {
   return new Promise((resolve, reject) => {
-    const command = `g++ "${sourceFile}" -o "${outputFile}"`;
+    const command = `g++ "${cppPath}" -o "${exePath}"`;
 
     exec(command, (error, stdout, stderr) => {
       if (error) {
-        reject(stderr || error.message);
-      } else {
-        resolve(stdout);
+        return reject(stderr || error.message);
       }
+
+      resolve();
     });
   });
 };
