@@ -1,14 +1,30 @@
-import { exec } from "child_process";
+import { execFile } from "child_process";
 
-const executeCode = (executableFile) => {
+const executeCode = (exePath, input = "") => {
   return new Promise((resolve, reject) => {
-    exec(`"${executableFile}"`, (error, stdout, stderr) => {
+    const startTime = Date.now();
+
+    const child = execFile(exePath, (error, stdout, stderr) => {
+      const executionTime = Date.now() - startTime;
+
       if (error) {
-        reject(stderr || error.message);
-      } else {
-        resolve(stdout);
+        return reject({
+          error: stderr || error.message,
+          executionTime,
+        });
       }
+
+      resolve({
+        output: stdout.trim(),
+        executionTime,
+      });
     });
+
+    if (input) {
+      child.stdin.write(input);
+    }
+
+    child.stdin.end();
   });
 };
 

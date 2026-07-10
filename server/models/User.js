@@ -36,6 +36,20 @@ const userSchema = new mongoose.Schema(
       default: 0,
     },
 
+    submissions: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Submission",
+  },
+],
+
+favoriteProblems: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Problem",
+  },
+],
+
     avatar: {
       type: String,
       default: "",

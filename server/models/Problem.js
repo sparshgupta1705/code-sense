@@ -14,11 +14,24 @@ const problemSchema = new mongoose.Schema(
       required: true,
     },
 
+    category: {
+      type: String,
+      required: true,
+    },
+
     tags: [
       {
         type: String,
       },
     ],
+
+    companies: [String],
+
+    frequency: {
+      type: String,
+      enum: ["Low", "Medium", "High"],
+      default: "Medium",
+    },
 
     description: {
       type: String,
@@ -43,16 +56,29 @@ const problemSchema = new mongoose.Schema(
       default: "",
     },
 
-    testCases: [
-      {
-        input: String,
-        expectedOutput: String,
-        isHidden: {
-          type: Boolean,
-          default: false,
-        },
-      },
-    ],
+    publicTestCases: [
+  {
+    input: String,
+    expectedOutput: String,
+  },
+],
+
+hiddenTestCases: [
+  {
+    input: String,
+    expectedOutput: String,
+  },
+],
+
+    acceptedCount: {
+      type: Number,
+      default: 0,
+    },
+
+    submissionCount: {
+      type: Number,
+      default: 0,
+    },
 
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,

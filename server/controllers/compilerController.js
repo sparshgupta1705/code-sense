@@ -7,7 +7,7 @@ import {
 
 export const runCompiler = async (req, res) => {
   try {
-    const { code } = req.body;
+    const { code, input = "" } = req.body;
 
     if (!code) {
       return res.status(400).json({
@@ -23,15 +23,15 @@ export const runCompiler = async (req, res) => {
     await compileCode(cppPath, exePath);
 
     // Execute
-    const output = await executeCode(exePath);
-
+    const result = await executeCode(exePath, input);
     // Cleanup
     cleanup(cppPath, exePath);
 
     return res.status(200).json({
-      success: true,
-      output,
-    });
+  success: true,
+  output: result.output,
+  executionTime: result.executionTime,
+});
 
   } catch (error) {
     console.error(error);
