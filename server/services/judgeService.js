@@ -5,54 +5,104 @@ import {
   cleanup,
 } from "../compiler/index.js";
 
-const normalize = (str) => str.trim().replace(/\r\n/g, "\n");
+const normalize = (text) =>
+  text.trim().replace(/\r\n/g, "\n");
 
-export const judgeSubmission = async (code, testCases) => {
+export const judgeSubmission = async (
+  code,
+  publicTests,
+  hiddenTests
+) => {
+
   const { cppPath, exePath } = createSourceFile(code);
 
   try {
-    // Compile
+
     await compileCode(cppPath, exePath);
+
+    const allTests = [
+      ...publicTests,
+      ...hiddenTests,
+    ];
 
     let passed = 0;
 
-    for (const testCase of testCases) {
+    let totalExecutionTime = 0;
+
+    for (const test of allTests) {
+
       const result = await executeCode(
         exePath,
-        testCase.input
+        test.input
       );
+
+      totalExecutionTime += result.executionTime;
 
       if (
         normalize(result.output) ===
-        normalize(testCase.expectedOutput)
+        normalize(test.expectedOutput)
       ) {
+
         passed++;
+
       } else {
+
         cleanup(cppPath, exePath);
 
         return {
+
           verdict: "Wrong Answer",
+
           passed,
-          total: testCases.length,
-          executionTime: result.executionTime,
+
+          total: allTests.length,
+
+          executionTime: totalExecutionTime,
+
+          compilerOutput: result.output
+
         };
+
       }
+
     }
 
     cleanup(cppPath, exePath);
 
     return {
+
       verdict: "Accepted",
+
       passed,
-      total: testCases.length,
+
+      total: allTests.length,
+
+      executionTime: totalExecutionTime,
+
+      compilerOutput: ""
+
     };
 
-  } catch (error) {
+  }
+
+  catch (err) {
+
     cleanup(cppPath, exePath);
 
     return {
+
       verdict: "Compilation Error",
-      error,
+
+      compilerOutput: err.toString(),
+
+      passed:0,
+
+      total:0,
+
+      executionTime:0
+
     };
+
   }
+
 };

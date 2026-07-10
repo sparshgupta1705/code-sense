@@ -35,33 +35,35 @@ const submissionSchema = new mongoose.Schema(
       required: true,
     },
 
-    executionTime: Number,
-
-    memoryUsed: Number,
-
-    passedTestCases: Number,
-
-    totalTestCases: Number,
-
-    compilerOutput: String,
-
-    aiReviewed: {
-      type: Boolean,
-      default: false,
-    },
-
-    aiScore: {
+    executionTime: {
       type: Number,
-      default: null,
+      default: 0,
     },
 
-    aiFeedback: {
+    memoryUsed: {
+      type: Number,
+      default: 0,
+    },
+
+    passedTestCases: {
+      type: Number,
+      default: 0,
+    },
+
+    totalTestCases: {
+      type: Number,
+      default: 0,
+    },
+
+    compilerOutput: {
       type: String,
       default: "",
     },
-  },
-  {
-    timestamps: true,
+
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   }
 );
 
