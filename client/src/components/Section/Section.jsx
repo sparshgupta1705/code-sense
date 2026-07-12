@@ -1,7 +1,7 @@
 function Section({ children, className = "" }) {
   return (
     <section
-      className={`py-24 ${className}`}
+      className={`bg-gray-950 py-24 ${className}`}
     >
       {children}
     </section>

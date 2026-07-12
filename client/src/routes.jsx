@@ -33,9 +33,9 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "compiler",
-        element: <Compiler />,
-      },
+    path: "compiler/:problemId",
+    element: <Compiler />,
+},
       {
         path: "problems",
         element: <Problems />,

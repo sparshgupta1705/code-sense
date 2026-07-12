@@ -17,7 +17,7 @@ function Features() {
 
         <div className="text-center">
 
-          <h2 className="text-5xl font-bold">
+          <h2 className="text-white text-5xl font-bold">
 
             Why Choose
 
